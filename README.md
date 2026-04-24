@@ -7,8 +7,9 @@ Welcome to my repository of Python projects! This is where I document my 10-hour
 - [x] **02_File_Extension_Reporter**: OS Module.
 - [x] **03_CSV_Student_Grade_Filter**: Append, CSV Parsing, Type Casting ,Context Manager
 - [x] **04_Library_Management_System**: OOPs ,JSON File I/O
+- [x] **05_Matrix_Calculator**: OOPs , Magic Method
 
 ## 🛠 Tech Stack
 - **Language:** Python 3.x
 - **Environment:** VS Code
-- **Modules:** `os`
+- **Modules:** `os` , `json` , `csv`
