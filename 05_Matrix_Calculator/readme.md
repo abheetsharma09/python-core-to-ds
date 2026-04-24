@@ -17,7 +17,3 @@ This project was built to master the concept of **2D Lists** and **Nested Loops*
 2. Traversing columns (`j` index).
 3. Performing element-wise calculations.
 
-## 💻 How to Run
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/Matrix-Calculator.git](https://github.com/YOUR_USERNAME/Matrix-Calculator.git)
