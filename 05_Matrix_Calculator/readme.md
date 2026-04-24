@@ -1,6 +1,6 @@
 # CLI-Based Matrix Calculator 🧮
 
-A custom Python implementation of Matrix operations built from scratch using Object-Oriented Programming (OOP) principles. This project focuses on understanding how data structures are managed at a low level without relying on external libraries like NumPy.
+A custom Python implementation built from scratch using Core Python and OOP Principles. This project avoids high-level math libraries (like NumPy) to demonstrate a deep understanding of Nested Loop Logic and Manual Array Manipulation.
 
 ## 🚀 Features
 - **OOP Architecture:** Utilizes Python classes and dunder methods (`__add__`, `__sub__`, `__truediv__`) for intuitive operator overloading.
