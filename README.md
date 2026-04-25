@@ -1,6 +1,6 @@
 # 🐍 Python Beginner Projects
 
-Welcome to my repository of Python projects! This is where I document my 10-hour marathon and transition from basic syntax to Object-Oriented Programming (OOP).
+Welcome to my repository of Python projects! This is where I document my journey from basic syntax to Object-Oriented Programming (OOP) and using some File Handling Library(JSON, CSV).
 
 ## 🚀 Learning Project
 - [x] **01_Log_Analyzer**: File I/O, String Parsing, and Report Generation.
