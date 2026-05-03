@@ -1,7 +1,3 @@
-# DSA Mastery: Engineering from the Ground Up 🚀
-
-This repository is a deep dive into Data Structures and Algorithms, implemented in Python. Rather than using built-in abstractions, the goal of this project is to implement core structures from scratch to understand memory management, pointer logic, and algorithmic efficiency.
-
 ## 🧠 Why Build from Scratch?
 While Python provides highly optimized built-in structures like `list`, they act as "black boxes." By implementing a **Dynamic Array** using the `ctypes` module, I have explored:
 - **Low-Level Memory Allocation:** How Python interacts with C-style referential arrays.
