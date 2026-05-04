@@ -1,4 +1,4 @@
-# Python Core to AI
+# Python Core to DS
 
 This repository serves as a comprehensive documentation of my journey from mastering Python fundamentals to implementing complex data structures and mathematical computing. It tracks my transition from writing basic utility scripts to building the core logic required for artificial intelligence and data science.
 
