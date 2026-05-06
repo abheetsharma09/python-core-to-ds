@@ -11,6 +11,7 @@ This repository serves as a comprehensive documentation of my journey from maste
 *   **05_Matrix_Calculator**: An implementation of matrix operations, focusing on the mathematical foundations of linear algebra used in computational models.
 *   **06_Arrays_and_Dynamic_Lists**: A deep dive into memory management and the underlying logic of how dynamic arrays grow and store data.
 *   **07_Linked_List**: A custom implementation of linear data structures, including functions for traversal, insertion, and deletion to understand non-contiguous memory storage.
+*   **08_Numpy_image_engine**: A command-line tool developed to perform low-level image manipulation using matrix mathematics and NumPy vectorization 
 
 ## Core Competencies Gained
 
