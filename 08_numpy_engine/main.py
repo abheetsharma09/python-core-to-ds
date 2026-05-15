@@ -7,12 +7,19 @@ import numpy
 import string
 import random
 
+
 img_path = input("Enter Image Path.. ") #Asking for the User file Input
 
-def img_compare(A, B): #Returns A image with 2images side by side..
+def convert_and_compress(input_path, output_path, quality):
+    with Image.open(input_path) as img:
+        img = img.convert("RGB")
+        img.save(output_path, "JPEG", quality=quality, optimize=True)
+        print("DONE")
+
+def img_compare(A, B , title): #Returns A image with 2images side by side..
     # 1. Load the images
     img1 = Image.open(A)
-    img2 = Image.open(f'{B}.png')
+    img2 = Image.open(f'{title}_{B}.png')
 
     # --- Padding Logic Added ---
     pad = 20  # Padding size
@@ -35,12 +42,22 @@ def img_compare(A, B): #Returns A image with 2images side by side..
     print("Combing Images..Please wait!!..")
     print("-"* 10)
     # 5. Save the result
-    dst.save(f'{B}_combined.png')
-    print(f'New Combined Image Saved as "{B}_combined.png"..SUCCESFULLY..in the current Directory')
-    print("-" * 50)
+    dst.save(f'{title}_{B}_combined.png')
+    print(f'New Combined Image Saved as "{title}_{B}_combined.png"..SUCCESFULLY..in the current Directory')
+
+
+def save_print(A , B , title):
+    plt.imsave(f'{title}_{A}.png' , B , cmap="grey")
+    print(f'Image Saved as "{title}_{A}.png"..SUCCESFULLY..in the current Directory')
+    print("-" * 30)
+    yn = input("Do you want to compare with original? (y/n) ") 
+    if yn == "y" or yn == "Y":
+        img_compare(img_path, A , title)
+    else:
+        return
 
 def user_func(req_inp , img, img_path=img_path):
-    res = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    res = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
 
     if req_inp == 1:
         try:
@@ -52,14 +69,7 @@ def user_func(req_inp , img, img_path=img_path):
         new_img_1 = numpy.clip(img.astype(float) + user_inp_func_1, 0, 255).astype('uint8')
         print("Working on IT!!...Increasing Brightness..")
         print("-" * 10)
-        plt.imsave(f'{res}.png' , new_img_1 ,cmap='viridis')
-        print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-        print("-" * 30)
-        yn1 = input("Do you want to compare with original? (y/n) ") 
-        if yn1 == "y" or yn1 == "Y":
-            img_compare(img_path, res)
-        else:
-            return
+        save_print(res , new_img_1 , "Brightness+")
 
     elif req_inp == 2:
         try:
@@ -71,14 +81,7 @@ def user_func(req_inp , img, img_path=img_path):
         new_img_2 = numpy.clip(img.astype(float) - user_inp_func_2, 0, 255).astype('uint8')
         print("Working on IT!!...Decreasing Brightness..")
         print("-" * 10)
-        plt.imsave(f'{res}.png' , new_img_2 ,cmap='viridis')
-        print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-        print("-" * 30)
-        yn2 = input("Do you want to compare with original? (y/n) ") 
-        if yn2 == "y" or yn2 == "Y":
-            img_compare(img_path, res)
-        else:
-            return
+        save_print(res , new_img_2 , "Brightness-")
 
     elif req_inp == 3:
         user_inp_func_3 = input("Which colour you want to boost??..[R,G,B] ")
@@ -101,14 +104,7 @@ def user_func(req_inp , img, img_path=img_path):
             new_img_3_A = numpy.clip(new_img_3_A, 0, 255).astype('uint8')
             print("Working on IT!!...Increasing Image Redness..")
             print("-" * 10)
-            plt.imsave(f'{res}.png' , new_img_3_A ,cmap='viridis')
-            print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-            print("-" * 30)
-            yn1 = input("Do you want to compare with original? (y/n) ") 
-            if yn1 == "y" or yn1 == "Y":
-                img_compare(img_path, res)
-            else:
-                return
+            save_print(res , new_img_3_A , "Red_Effect+")
 
         elif user_inp_func_3 == "G" or user_inp_func_3 == "g":
             try:
@@ -129,14 +125,7 @@ def user_func(req_inp , img, img_path=img_path):
             new_img_3_B = numpy.clip(new_img_3_B, 0, 255).astype('uint8')
             print("Working on IT!!...Increasing Image Grenish Colour..")
             print("-" * 10)
-            plt.imsave(f'{res}.png' , new_img_3_B ,cmap='viridis')
-            print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-            print("-" * 30)
-            yn1 = input("Do you want to compare with original? (y/n) ") 
-            if yn1 == "y" or yn1 == "Y":
-                img_compare(img_path, res)
-            else:
-                return
+            save_print(res , new_img_3_B , "Green_Effect+")
             
 
         elif user_inp_func_3 == "B" or user_inp_func_3 == "b":
@@ -158,14 +147,7 @@ def user_func(req_inp , img, img_path=img_path):
             new_img_3_C = numpy.clip(new_img_3_C, 0, 255).astype('uint8')
             print("Working on IT!!...Increasing Image Blueish Colour..")
             print("-" * 10)
-            plt.imsave(f'{res}.png' , new_img_3_C ,cmap='viridis')
-            print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-            print("-" * 30)
-            yn1 = input("Do you want to compare with original? (y/n) ") 
-            if yn1 == "y" or yn1 == "Y":
-                img_compare(img_path, res)
-            else:
-                return
+            save_print(res , new_img_3_C , "Blue_Effect+")
         else:
             print("Choose from the given Option..Above!!")
         
@@ -179,14 +161,7 @@ def user_func(req_inp , img, img_path=img_path):
         new_img_4 = new_img_4[::user_inp_func_4 , ::user_inp_func_4]
         print("Working on IT!!...Decreasing Image Size..")
         print("-" * 10)
-        plt.imsave(f'{res}.png' , new_img_4 ,cmap='viridis')
-        print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-        print("-" * 30)
-        yn1 = input("Do you want to compare with original? (y/n) ") 
-        if yn1 == "y" or yn1 == "Y":
-            img_compare(img_path, res)
-        else:
-            return
+        save_print(res , new_img_4 , "Decreased_Size")
 
     elif req_inp == 5:
         gray_img = img.astype(float).copy()
@@ -197,34 +172,36 @@ def user_func(req_inp , img, img_path=img_path):
             gray_img[:, :, 1] * 0.587 +
             gray_img[:, :, 2] * 0.114
         )
-
         # Clip and convert
         gray_img = numpy.clip(gray_img, 0, 255).astype('uint8')
+        print("Converting and Saving..Please Wait!!")
+        print("-" * 15)
+        save_print(res , gray_img , "Greyscale") 
 
-        # Save properly as grayscale
-        plt.imsave(f'{res}.png', gray_img, cmap='gray')
-        # print(f'Brightness Increased by +{user_inp_func_1}')
-        print(f'Image Saved as "{res}.png"..SUCCESFULLY..in the current Directory')
-        print("-" * 30)
-        yn1 = input("Do you want to compare with original? (y/n) ") 
-        if yn1 == "y" or yn1 == "Y":
-            img_compare(img_path, res)
-        else:
-            return        
+    elif req_inp == 6:
+        inp_quality = int(input("Enter..."))
+        convert_and_compress(img_path, f'{res}.jpg' , inp_quality)
 
-if os.path.exists(img_path):#If path is Valid
-    img = mpimg.imread(img_path)
-    print("-" * 50)
-    print(f'Filename : {os.path.basename(img_path)}\nFileSize : {os.path.getsize(img_path)} bytes\nSize : {img.shape}\nShape : {img.size}\nDType : {img.dtype}')
-    print("-" * 50)
-    print(f'1 → Increase brightness\n2 → Decrease brightness\n3 → Change RGB channels\n4 → Downsample\n5 → Greyscale\n0 → Exit')
-    print("-" * 50)
-    try:
-        req_inp = int(input("Choose from the Given Input : "))
+
+while True:
+    if os.path.exists(img_path):#If path is Valid
+        img = mpimg.imread(img_path)
         print("-" * 50)
-    except ValueError as err_val:
-        print(f'ERROR!!..{err_val}')
-    user_func(req_inp , img)
+        print(f'Filename : {os.path.basename(img_path)}\nFileSize : {os.path.getsize(img_path)} bytes\nSize : {img.shape}\nShape : {img.size}\nDType : {img.dtype}')
+        print("-" * 50)
+        print(f'1 → Increase brightness\n2 → Decrease brightness\n3 → Change RGB channels\n4 → Downsample\n5 → Greyscale\n6 → Compress Image\n0 → Exit')
+        print("-" * 50)
+        try:
+            req_inp = int(input("Choose from the Given Input : "))
+            if req_inp == 0:
+                print("-" * 15)
+                print("Exiting...")
+                break
+            print("-" * 50)
+        except ValueError as err_val:
+            print(f'ERROR!!..{err_val}')
+        user_func(req_inp , img)
 
-else:
-    print("Path not specified")
+    else:
+        print("Path not specified")
+        break
