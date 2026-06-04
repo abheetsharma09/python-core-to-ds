@@ -178,10 +178,6 @@ def user_func(req_inp , img, img_path=img_path):
         print("-" * 15)
         save_print(res , gray_img , "Greyscale") 
 
-    elif req_inp == 6:
-        inp_quality = int(input("Enter..."))
-        convert_and_compress(img_path, f'{res}.jpg' , inp_quality)
-
 
 while True:
     if os.path.exists(img_path):#If path is Valid
@@ -189,7 +185,7 @@ while True:
         print("-" * 50)
         print(f'Filename : {os.path.basename(img_path)}\nFileSize : {os.path.getsize(img_path)} bytes\nSize : {img.shape}\nShape : {img.size}\nDType : {img.dtype}')
         print("-" * 50)
-        print(f'1 → Increase brightness\n2 → Decrease brightness\n3 → Change RGB channels\n4 → Downsample\n5 → Greyscale\n6 → Compress Image\n0 → Exit')
+        print(f'1 → Increase brightness\n2 → Decrease brightness\n3 → Change RGB channels\n4 → Downsample\n5 → Greyscale\n0 → Exit')
         print("-" * 50)
         try:
             req_inp = int(input("Choose from the Given Input : "))
