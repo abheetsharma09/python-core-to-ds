@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Datasets</title>
+    <style>
+        /* --- Core Theme Settings --- */
+        :root {
+            --bg-color: #141414;
+            --surface-color: #1f1f1f;
+            --surface-hover: #282828;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a0a0a5;
+            --accent-color: #e50914;
+            --accent-hover: #b80710;
+            --border-color: #2a2a2a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* --- Header & Filter Control Layout --- */
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+        }
+
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-select {
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            min-width: 180px;
+            transition: border-color 0.2s ease;
+        }
+
+        .custom-select:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* --- Premium Classical Table --- */
+        .table-container {
+            width: 100%;
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1a1a1a;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+
+        tr {
+            transition: background-color 0.25s ease;
+        }
+
+        tr:hover {
+            background-color: var(--surface-hover);
+        }
+
+        tr:hover td {
+            color: var(--text-primary);
+        }
+
+        td strong {
+            color: var(--text-primary);
+        }
+
+        .rating-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ee1d1d;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .genre-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-style: italic;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- Custom Interactive Button --- */
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .custom-btn {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-btn:hover:not(:disabled) {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .custom-btn:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .custom-btn:disabled {
+            color: var(--text-secondary);
+            border-color: var(--border-color);
+            background-color: rgba(255, 255, 255, 0.02);
+            cursor: not-allowed;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInRow {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-row {
+            animation: fadeInRow 0.4s ease forwards;
+        }
+
+        /* --- Responsive Viewport Adaptation (Mobile Configuration) --- */
+        @media screen and (max-width: 768px) {
+            body { padding: 20px 10px; }
+            
+            .header-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 14px;
+            }
+
+            .filter-wrapper { width: 100%; }
+            .custom-select { width: 100%; }
+
+            table, thead, tbody, th, td, tr { 
+                display: block; 
+            }
+            
+            thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr {
+                border-bottom: 2px solid var(--border-color);
+                padding: 16px 12px;
+                background-color: var(--surface-color);
+                margin-bottom: 16px;
+                border-radius: 8px;
+            }
+
+            td {
+                border: none;
+                padding: 6px 0;
+                font-size: 0.95rem;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+
+            /* Hides label prefixes on posters to give the image full priority */
+            td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--text-primary);
+                width: 90px;
+                min-width: 90px;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            td[data-label="Poster"]::before {
+                display: none;
+            }
+
+            /* Makes the image expand to scale across the whole entry block */
+            td[data-label="Poster"] {
+                display: block;
+                width: 100%;
+                padding: 0 0 12px 0;
+                text-align: center;
+            }
+
+            td[data-label="Poster"] img {
+                max-height: 320px !important;
+                width: 100% !important;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+
+            td[data-label="Description"]::before {
+                display: block;
+                width: 100%;
+                margin-bottom: 6px;
+            }
+
+            td[data-label="Description"] {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <h2>Netflix Datasets</h2>
+            
+            <div class="filter-wrapper">
+                <select id="genre-select" class="custom-select">
+                    <option value="All">Genres</option>
+                    {% for genre in genres %}
+                        <option value="{{ genre }}">{{ genre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Poster</th>
+                        <th style="width: 22%;">Title</th>
+                        <th style="width: 10%;">Rating</th>
+                        <th style="width: 15%;">Genre</th>
+                        <th style="width: 35%;">Description</th>
+                        <th style="width: 10%;">Released</th>
+                    </tr>
+                </thead>
+                <tbody id="show-table-body">
+                    {% for show in shows %}
+                    <tr>
+                        <td data-label="Poster">
+                            {% if show.Poster_Url %}
+                                <img src="{{ show.Poster_Url }}" alt="Poster" style="max-height: 80px; width: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">
+                            {% else %}
+                                <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">No Image</span>
+                            {% endif %}
+                        </td>
+                        
+                        <td data-label="Title"><strong>{{ show.Title }}</strong></td>
+                        <td data-label="Rating"><span class="rating-badge">{{ show.Vote_Average }}</span></td>
+                        <td data-label="Genre"><span class="genre-badge">{{ show.Genre }}</span></td>
+                        <td data-label="Description">{{ show.Overview }}</td>
+                        <td data-label="Released">{{ show.Release_Date[:4] if show.Release_Date else 'N/A' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="btn-container">
+            <button id="load-more-btn" class="custom-btn">Load More Shows</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 2; 
+        let currentGenre = "All";
+
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const genreSelect = document.getElementById('genre-select');
+        const tableBody = document.getElementById('show-table-body');
+
+        function loadShows(reset = false) {
+            loadMoreBtn.innerText = "Loading...";
+            loadMoreBtn.disabled = true;
+
+            if (reset) {
+                currentPage = 1;
+                tableBody.innerHTML = '';
+            }
+
+            fetch(`/get_more_shows?page=${currentPage}&genre=${encodeURIComponent(currentGenre)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        loadMoreBtn.innerText = reset ? "No Shows Found" : "No More Shows";
+                        loadMoreBtn.disabled = true;
+                        return;
+                    }
+
+                    data.forEach(show => {
+                        const year = show.Release_Date ? show.Release_Date.substring(0, 4) : 'N/A';
+                        
+                        const imageHtml = show.Poster_Url 
+                            ? `<img src="${show.Poster_Url}" alt="Poster" style="max-height: 80px; width: auto; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.5);">`
+                            : `<span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">No Image</span>`;
+
+                        const tr = document.createElement('tr');
+                        tr.className = 'animated-row';
+                        
+                        tr.innerHTML = `
+                            <td data-label="Poster">${imageHtml}</td>
+                            <td data-label="Title"><strong>${show.Title || 'N/A'}</strong></td>
+                            <td data-label="Rating"><span class="rating-badge">${show.Vote_Average !== undefined ? show.Vote_Average : 'N/A'}</span></td>
+                            <td data-label="Genre"><span class="genre-badge">${show.Genre || 'N/A'}</span></td>
+                            <td data-label="Description">${show.Overview || 'No description available.'}</td>
+                            <td data-label="Released">${year}</td>
+                        `;
+                        
+                        tableBody.appendChild(tr);
+                    });
+
+                    currentPage++;
+                    loadMoreBtn.innerText = "Load More Shows";
+                    loadMoreBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error("Error loading content chunk:", error);
+                    loadMoreBtn.innerText = "Error Loading Data";
+                    loadMoreBtn.disabled = false;
+                });
+        }
+
+        loadMoreBtn.addEventListener('click', () => loadShows(false));
+
+        genreSelect.addEventListener('change', function() {
+            currentGenre = this.value;
+            loadShows(true);
+        });
+    </script>
+</body>
+</html>

@@ -1,18 +1,52 @@
-# Python Core to DS
+# Netflix Datasets Project
 
-This repository serves as a comprehensive documentation of my journey from mastering Python fundamentals to implementing complex data structures and mathematical computing. It tracks my transition from writing basic utility scripts to building the core logic required for artificial intelligence and data science.
+A foundational data-driven web application built while learning the Python Pandas library. This project bridges a local structured dataset with an interactive, responsive front-end user interface.
 
-## Projects and Implementations
+The application reads a dataset of Netflix movies and TV shows(downloaded from Kaggle) stored in a `.csv` file, processes pagination requests asynchronously, and allows users to dynamically filter content by genre without reloading the webpage.
 
-*   **01_Log_Analyzer**: A tool designed to parse and analyze system log files to extract meaningful patterns and identify potential errors.
-*   **02_File_Extension_Reporter**: A script that scans directories and generates reports on the distribution of different file types within a system.
-*   **03_CSV_Student_Grade_Filter**: An automation script that processes academic data from CSV files, applying filters to categorize and analyze student performance.
-*   **04_Library_Management_System**: A project focused on Object-Oriented Programming (OOP) to manage book inventories, user records, and borrowing logic.
-*   **05_Matrix_Calculator**: An implementation of matrix operations, focusing on the mathematical foundations of linear algebra used in computational models.
-*   **06_Arrays_and_Dynamic_Lists**: A deep dive into memory management and the underlying logic of how dynamic arrays grow and store data.
-*   **07_Linked_List**: A custom implementation of linear data structures, including functions for traversal, insertion, and deletion to understand non-contiguous memory storage.
-*   **08_Numpy_Engine**: A command-line tool developed to perform low-level image manipulation using matrix mathematics and NumPy vectorization 
+## Live Demo
+![Alt text](images/ss.png)\
+The application is deployed and accessible at: **[https://netflix-ds-abheetsharma.onrender.com/]**
+*(Note: Due to free-tier hosting limits, the initial page request may experience a 30–50 second delay if the instance is spinning up from an inactive state).*
 
-## Core Competencies Gained
+---
 
-Through these projects, I have developed a strong foundation in Python syntax, script automation, and file handling. I have mastered Object-Oriented Programming principles such as encapsulation and inheritance. Additionally, I have gained a deep understanding of data structure logic, specifically how to manage and optimize data flow through custom-built arrays and linked lists, preparing me for complex mathematical and algorithmic challenges.
+## Architecture Overview
+
+The system operates on a classical Client-Server architecture handling structured local file storage:
+
+1. **Frontend (Client):** Standard HTML5 and CSS3 paired with asynchronous native JavaScript (`Fetch API`) to manage content states, user dropdown choices, and scroll-pagination updates.
+2. **Backend (Server):** A Python Flask application acting as the logic router and operational gateway.
+3. **Data Layer:** A local CSV dataset loaded, cleaned, and sliced on-demand utilizing the Pandas library.
+
+---
+
+## Core Features Implemented
+
+* **Asynchronous Pagination:** Content is batched out 50 records at a time. The system listens for manual UI events to load subsequent blocks via targeted row offsets.
+* **Dynamic Content Filtering:** Real-time genre extraction maps the full scope of available genres directly from the dataset. Filtering recalculates pagination splits transparently on the fly.
+* **Corrupted Record Bypass:** Integrated robust file parsing using the Python parsing engine configuration (`on_bad_lines='skip'`) to prevent buffer overflows or server-side application panics caused by unescaped characters in description text fields.
+* **Mobile-Responsive Adaptability:** CSS media rules automatically collapse the dense multi-column layout table into structured informational modular cards, modifying image-scaling logic for smaller viewport configurations.
+
+---
+
+## Core Learning Outcomes (Pandas & Systems)
+
+Developing this project provided concrete experience in several software engineering concepts:
+* **Memory Optimization:** Loading distinct vector slices using `.iloc[start:end]` rather than loading entire custom filter sets repeatedly into live system memory blocks.
+* **Data Sanitization & Preparation:** Handling structural null/NaN attributes using `.fillna()`.
+* **Deployment Realities:** Configuring system environmental constraints via production-grade HTTP servers (`Gunicorn`), dependencies maps (`requirements.txt`), and infrastructural runtime mappings (`Procfile`).
+
+---
+
+## File Structure
+
+```text
+├── images/
+├── data/
+│   └── NETFLIXDb.csv         # Raw Netflix dataset
+├── templates/
+│   └── index.html            # UI Layout, responsive styles, and Fetch 
+├── NETFLIX.py                # Main Flask entry point and data processing 
+├── requirements.txt          # Python package dependency mapping
+└── Procfile                  # Cloud platform process engine instructions
