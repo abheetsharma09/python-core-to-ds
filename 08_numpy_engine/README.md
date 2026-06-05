@@ -11,15 +11,15 @@ I learned that digital images are essentially 3D NumPy arrays (Height x Width x 
 Instead of using standard interpolation, I implemented compression via **Step Slicing**. By selecting every $n^{th}$ pixel (e.g., `array[::2, ::2]`), the image dimensions are reduced with $O(1)$ complexity, demonstrating how data can be sampled without loops.
 
 ### 3. Luminance & Grayscale Conversion
-![Alt text](output/Greyscale_5NSNZ1_combined.png)
+![Alt text](output/Greyscale_5NSNZ1_combined.png) \
 I implemented the standard weighted average formula for luminance:
 $$Y = 0.299R + 0.587G + 0.114B$$
 This involved collapsing the 3rd dimension (RGB) into a 2D intensity matrix while preserving perceived brightness.
 
 ### 4. Manual Color Grading
-![Alt text](output/Red_Effect+_nhUrbe_combined.png)
-![Alt text](output/Green_Effect+_SIChJA_combined.png)
-![Alt text](output/Blue_Effect+_ibcpQ3_combined.png)
+![Alt text](output/Red_Effect+_nhUrbe_combined.png) \
+![Alt text](output/Green_Effect+_SIChJA_combined.png) \
+![Alt text](output/Blue_Effect+_ibcpQ3_combined.png) \
 By targeting specific indices in the color channel axis (Axis 2), I developed a custom "boost" logic. This involves:
 *   Adding/Subtracting constants from specific channels.
 *   Using `numpy.clip` to ensure values stay within the valid `[0, 255]` range, preventing data overflow.
