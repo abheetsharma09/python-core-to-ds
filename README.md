@@ -15,6 +15,8 @@ This repository serves as a comprehensive documentation of my journey from maste
 
 *   **09_Pandas_Netflix_Datasets**: A basic begineer project while learning pandas library.It basically takes Netflix all tvshows and movies data stored in a `.csv` file and connect it to a captivative webpage.
 
+*   **10_Pandas_Cricket_Analysis**: A simple code written in jupyter notebook.That takes a huge IPL datasets `.csv` and plot 5 meaning full graph on them.
+
 ## Core Competencies Gained
 
 Through these projects, I have developed a strong foundation in Python syntax, script automation,file handling and libraries including Pandas and Numpy till now. I have mastered Object-Oriented Programming principles such as encapsulation and inheritance. Additionally, I have gained a deep understanding of data structure logic, specifically how to manage and optimize data flow through custom-built arrays and linked lists, preparing me for complex mathematical and algorithmic challenges.
