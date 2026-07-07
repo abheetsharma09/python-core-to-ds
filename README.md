@@ -15,6 +15,7 @@ This repository serves as a comprehensive documentation of my journey from maste
 *   **09_Pandas_Netflix_Datasets**: A basic begineer project while learning pandas library.It basically takes Netflix all tvshows and movies data stored in a `.csv` file and connect it to a captivative webpage.
 *   **10_Pandas_Cricket_Analysis**: A simple code written in jupyter notebook.That takes a huge IPL datasets `.csv` and plot 5 meaning full graph on them.
 *   **11_dummy_NumPy-MLP**: A dummy CLI tool that simulates the mathematical "forward pass" of a Multi-Layer Perceptron (MLP) from scratch using Python and NumPy.
+*   **12_django**: Learning django..for making authentication based real world system.
 
 ## Core Competencies Gained
 
