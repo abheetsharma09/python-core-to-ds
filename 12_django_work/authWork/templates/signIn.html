@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block formSignIn %}
+<!-- ================= CENTRAL CONTENT WRAPPER ================= -->
+    <main class="page-wrapper">
+        
+        <!-- Your exact Form Box (Now perfectly centered!) -->
+        <div class="signup-container">
+            <!-- Visual Branding Header -->
+            <header class="signup-header">
+                <div class="logo">✦</div>
+                <h1>Get Started</h1>
+                <p>Create an account to unlock all features.</p>
+            </header>
+
+            <!-- Main Account Registration Form -->
+            <form class="signup-form" action="#" method="POST">
+                
+                <!-- Full Name Field -->
+                <div class="input-group">
+                    <input type="text" name="name" id="fullname" required placeholder=" ">
+                    <label for="fullname">Full Name</label>
+                </div>
+
+                <!-- Email Address Field -->
+                <div class="input-group">
+                    <input type="email" name="email" id="email" required placeholder=" ">
+                    <label for="email">Email Address</label>
+                </div>
+
+                <!-- Password Field -->
+                <div class="input-group">
+                    <input type="password" name="" id="password" required placeholder=" ">
+                    <label for="password">Password</label>
+                </div>
+
+                <!-- Terms & Conditions Consent -->
+                <div class="terms-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <!-- Submission Action -->
+                <button type="submit" class="submit-btn">Create Account</button>
+                
+            </form>
+
+            <!-- Redirect Link to Existing Login Page -->
+            <footer class="signup-footer">
+                <p>Already have an account? <a href="/logIn">Log In</a></p>
+            </footer>
+        </div>
+
+    </main>
+{% endblock formSignIn %}

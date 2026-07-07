@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <!-- Include Poppins Font & FontAwesome Icons -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+    <!-- ================= NAVBAR START ================= -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fa-solid fa-cube logo-icon"></i>
+                <span>NEXUS</span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="nav-item">Home</a></li>
+                <li><a href="#" class="nav-item">Features</a></li>
+                <li><a href="#" class="nav-item">Pricing</a></li>
+                <li><a href="#" class="nav-item">Community</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="/signIn" class="btn-login">Sign In</a>
+            </div>
+        </div>
+    </nav>
+    <!-- ================= NAVBAR END ================= -->
+{% block formSignIn %} {% endblock formSignIn %}
+{% block formLogin %}{% endblock formLogin %}
+{% block homeContent %}{% endblock homeContent %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block formLogin %}
+<main class="page-wrapper">
+        
+    <div class="signup-container">
+        <!-- Visual Branding Header -->
+        <header class="signup-header">
+            <div class="logo">✦</div>
+            <h1>Welcome Back</h1>
+            <p>Log in to access your dashboard settings.</p>
+        </header>
+
+        <!-- Main Account Registration Form -->
+        <form class="signup-form" action="/login" method="POST">
+            {% csrf_token %}
+            
+            <!-- Email Address Field -->
+            <div class="input-group">
+                <input type="name" name="username" id="username" required placeholder=" ">
+                <label for="username">Username</label>
+            </div>
+
+            <!-- Password Field -->
+            <div class="input-group">
+                <input type="password" name="password" id="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div> <!-- Added missing closing tag here to prevent box layout collapse -->
+
+            <!-- Options Group (Remember Me & Forgot Password) -->
+            <div class="options-group">
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+            </div>
+
+            <!-- Submission Action -->
+            <button type="submit" class="submit-btn">Log In</button>
+            
+        </form>
+
+        <!-- Redirect Link to Registration Page -->
+        <footer class="signup-footer">
+            <p>Don't have an account? <a href="singIn">Register</a></p>
+        </footer>
+    </div>
+
+</main>
+
+{% endblock formLogin %}
