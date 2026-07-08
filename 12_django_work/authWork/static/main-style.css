@@ -463,3 +463,90 @@ body {
         text-align: center;
     }
 }
+
+/* --- New Stacking Container (Fixes overlapping) --- */
+.alert-stack-container {
+    position: fixed;
+    top: 90px; /* Locks the master container safely below your fixed navigation bar */
+    right: 20px; /* Aligns everything to the right side */
+    z-index: 2000;
+    max-width: 400px;
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column; /* Forces alerts to stack cleanly one below the other */
+    gap: 12px; /* Adds space between multiple alert boxes */
+    pointer-events: none; /* Allows user clicks to pass through empty space to the background forms */
+}
+
+/* --- Cleaned Glassmorphism Alert UI --- */
+.glass-alert {
+    width: 100%; /* Spans across the full width of the master stack container */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    pointer-events: auto; /* Re-enables interaction for elements and buttons inside the alert box */
+    animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Content Alignment Framework --- */
+.alert-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+}
+
+.alert-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.alert-text {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bolder;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* --- Interactive Cross Cancel Button --- */
+.alert-close-btn {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 0 0 15px;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.alert-close-btn:hover {
+    color: #00ffcc;
+}
+
+/* --- Theme Accents --- */
+.glass-alert.info { border: 1px solid rgba(0, 191, 255, 0.25); border-left: 4px solid #00bfff; }
+.glass-alert.info .alert-icon { color: #00bfff; text-shadow: 0 0 10px rgba(0, 191, 255, 0.3); }
+
+.glass-alert.success { border: 1px solid rgba(0, 255, 204, 0.25); border-left: 4px solid #00ffcc; }
+.glass-alert.success .alert-icon { color: #00ffcc; text-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
+
+.glass-alert.error, .glass-alert.danger { border: 1px solid rgba(255, 74, 74, 0.25); border-left: 4px solid #ff4a4a; }
+.glass-alert.error .alert-icon, .glass-alert.danger .alert-icon { color: #ff4a4a; text-shadow: 0 0 10px rgba(255, 74, 74, 0.3); }
+
+/* --- Slide-In Entry Animation --- */
+@keyframes slideInRight {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

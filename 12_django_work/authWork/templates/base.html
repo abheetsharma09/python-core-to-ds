@@ -7,8 +7,31 @@
     <!-- Include Poppins Font & FontAwesome Icons -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/main-style.css">
+    <link rel="stylesheet" href="../static/alert.css">
 </head>
+{% if messages %}
+    <!-- This container holds all your alerts and stacks them vertically -->
+    <div class="alert-stack-container">
+        {% for message in messages %}
+            <div class="glass-alert {% if message.tags %}{{ message.tags }}{% endif %}" id="nexusAlert-{{ forloop.counter }}">
+                <div class="alert-content">
+                    {% if message.tags == 'info' %}
+                        <i class="fa-solid fa-circle-info alert-icon"></i>
+                    {% elif message.tags == 'error' or message.tags == 'danger' %}
+                        <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+                    {% else %}
+                        <i class="fa-solid fa-circle-check alert-icon"></i>
+                    {% endif %}
+                    
+                    <p class="alert-text">{{ message }}</p>
+                </div>
+                <button class="alert-close-btn" onclick="document.getElementById('nexusAlert-{{ forloop.counter }}').style.display='none'">&times;</button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <body>
 
     <!-- ================= NAVBAR START ================= -->
@@ -20,18 +43,26 @@
             </div>
             
             <ul class="nav-links">
-                <li><a href="#" class="nav-item">Home</a></li>
-                <li><a href="#" class="nav-item">Features</a></li>
+                <li><a href="/" class="nav-item">Home</a></li>
+                <li><a href="/dashboard/" class="nav-item">Dashboard</a></li>
                 <li><a href="#" class="nav-item">Pricing</a></li>
                 <li><a href="#" class="nav-item">Community</a></li>
             </ul>
 
+            {% if user.is_authenticated %}
+            <div class="nav-actions">
+                <a href="/logout" class="btn-login">Log Out</a>
+            </div>
+            {% else %}
             <div class="nav-actions">
                 <a href="/signIn" class="btn-login">Sign In</a>
             </div>
+            {% endif %}
         </div>
     </nav>
     <!-- ================= NAVBAR END ================= -->
+    
+
 {% block formSignIn %} {% endblock formSignIn %}
 {% block formLogin %}{% endblock formLogin %}
 {% block homeContent %}{% endblock homeContent %}

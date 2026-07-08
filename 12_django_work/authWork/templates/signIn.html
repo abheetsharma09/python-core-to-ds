@@ -14,11 +14,17 @@
 
             <!-- Main Account Registration Form -->
             <form class="signup-form" action="#" method="POST">
-                
+                {% csrf_token %}
                 <!-- Full Name Field -->
                 <div class="input-group">
                     <input type="text" name="name" id="fullname" required placeholder=" ">
                     <label for="fullname">Full Name</label>
+                </div>
+
+                <!-- Full Username Field -->
+                <div class="input-group">
+                    <input type="text" name="username" id="username" required placeholder=" ">
+                    <label for="username">Username</label>
                 </div>
 
                 <!-- Email Address Field -->
@@ -29,8 +35,14 @@
 
                 <!-- Password Field -->
                 <div class="input-group">
-                    <input type="password" name="" id="password" required placeholder=" ">
+                    <input type="password" name="password" id="password" required placeholder=" ">
                     <label for="password">Password</label>
+                </div>
+
+                <!-- Password Field Check -->
+                <div class="input-group">
+                    <input type="password" name="password-check" id="password-check" required placeholder=" ">
+                    <label for="password">Retype Password</label>
                 </div>
 
                 <!-- Terms & Conditions Consent -->
