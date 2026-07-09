@@ -32,7 +32,7 @@
     </div>
 {% endif %}
 
-<body>
+<body ondblclick="document.body.classList.toggle('dark-theme');">
 
     <!-- ================= NAVBAR START ================= -->
     <nav class="glass-nav">
@@ -62,7 +62,7 @@
     </nav>
     <!-- ================= NAVBAR END ================= -->
     
-
+{% block dashboardContent %}{% endblock dashboardContent %}
 {% block formSignIn %} {% endblock formSignIn %}
 {% block formLogin %}{% endblock formLogin %}
 {% block homeContent %}{% endblock homeContent %}

@@ -10,13 +10,19 @@ def homePage(requests):
     else:
         return redirect("login/")
         
-
+def dashboard(requests):
+    if requests.user.is_authenticated:
+        return render(requests , "dashboard.html")
+    else:
+        return redirect("/login/")
+    
 def signIn(requests):
     if requests.user.is_authenticated:
         return redirect("/")
     
     if requests.method == "POST":
         u_name = requests.POST.get("name")
+        u_lastName = requests.POST.get("last-name")
         u_username = requests.POST.get("username")
         u_email = requests.POST.get("email")
         u_password = requests.POST.get("password")
@@ -27,12 +33,13 @@ def signIn(requests):
             messages.add_message(requests, messages.INFO, "Retype Password")
             return render(requests , "signIn.html")
 
-        if User.objects.filter(username=u_username).exists():
+        if User.objects.filter(username=u_username).exists() or User.objects.filter(email=u_email).exists():
             messages.add_message(requests, messages.INFO, "User already exists!!")
             return redirect('/login')
 
         user = User.objects.create_user(username=u_name, email=u_email, password=u_password)
         user.first_name = u_name
+        user.last_name = u_lastName
         user.save()
 
         login(requests, user)

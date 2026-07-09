@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block dashboardContent %}
+<link rel="stylesheet" href="../static/dashboard-style.css">
+<main class="page-wrapper dashboard-wrapper">
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="sidebar-item active">
+                        <a href="#"><i class="fa-solid fa-gauge-high"></i> <span>Dashboard</span></a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#"><i class="fa-solid fa-users"></i> <span>Users</span></a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Analytics</span></a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <span class="version">v2.4.0</span>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <section class="dashboard-main">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <h3>Total Users</h3>
+                        <p class="stat-number">1,284</p>
+                        <span class="stat-change positive">+12%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-cube"></i></div>
+                    <div class="stat-info">
+                        <h3>Projects</h3>
+                        <p class="stat-number">47</p>
+                        <span class="stat-change positive">+3</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3>Pending Tasks</h3>
+                        <p class="stat-number">12</p>
+                        <span class="stat-change negative">-2</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div class="stat-info">
+                        <h3>Revenue</h3>
+                        <p class="stat-number">$8,430</p>
+                        <span class="stat-change positive">+18%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Table -->
+            <div class="activity-panel">
+                <div class="panel-header">
+                    <h2>Recent Activity</h2>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="user-avatar">JD</span> John Doe</td>
+                            <td>Created project “NexusUI”</td>
+                            <td>2 min ago</td>
+                            <td><span class="badge success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="user-avatar">SM</span> Sarah Miles</td>
+                            <td>Updated user permissions</td>
+                            <td>1 hour ago</td>
+                            <td><span class="badge warning">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="user-avatar">RK</span> Raj Kumar</td>
+                            <td>Deleted old logs</td>
+                            <td>3 hours ago</td>
+                            <td><span class="badge success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="user-avatar">AL</span> Anna Li</td>
+                            <td>Added new integration</td>
+                            <td>5 hours ago</td>
+                            <td><span class="badge danger">Failed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock dashboardContent %}
