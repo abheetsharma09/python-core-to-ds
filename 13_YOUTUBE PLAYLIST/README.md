@@ -144,7 +144,7 @@ This script and its documentation were created with the assistance of an AI tool
 
 Happy downloading!
 
-REQUIREMENTS
+## REQUIREMENTS
 
 * * * * *
 
@@ -154,7 +154,7 @@ REQUIREMENTS
 
 -   ffmpeg (optional but highly recommended for best quality) -- installed separately
 
-INSTALLATION
+## INSTALLATION
 
 * * * * *
 
@@ -173,7 +173,7 @@ INSTALLATION
 
     Without ffmpeg, the script falls back to a single‑stream format (usually 720p or lower). For maximum quality, install it.
 
-USAGE
+## USAGE
 
 * * * * *
 
@@ -188,7 +188,7 @@ Optional arguments:\
 -q, --quality Q -- Override format filter (see examples below)\
 -v, --verbose -- Show detailed download logs
 
-EXAMPLES
+## EXAMPLES
 
 * * * * *
 
@@ -210,7 +210,7 @@ EXAMPLES
 6.  Use verbose mode to debug:\
     python main.py "URL" -v
 
-HOW IT WORKS
+## HOW IT WORKS
 
 * * * * *
 
@@ -222,7 +222,7 @@ HOW IT WORKS
 
 4.  Videos are saved in a folder named after the playlist (or "Videos/" for single videos) inside your output directory.
 
-TROUBLESHOOTING
+## TROUBLESHOOTING
 
 * * * * *
 
@@ -236,13 +236,13 @@ TROUBLESHOOTING
 
 -   Can't delete downloaded videos: Close VLC and any other media player. Then use the command: rmdir /s /q "folder_path" (Windows) or rm -rf folder_path (macOS/Linux).
 
-LICENSE
+## LICENSE
 
 * * * * *
 
 This script is free to use and modify. No warranty -- use at your own risk.
 
-ACKNOWLEDGEMENTS
+## ACKNOWLEDGEMENTS
 
 * * * * *
 
