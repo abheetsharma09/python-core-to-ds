@@ -193,22 +193,31 @@ Optional arguments:\
 * * * * *
 
 1.  Download an entire playlist (highest quality):\
+```bash
     python main.py "<https://www.youtube.com/playlist?list=PLxxxxxxxxxxxxxxxx>" -o ./videos
-
+```
 2.  Download only the first 5 videos from a playlist:\
+```bash
     python main.py "<https://www.youtube.com/playlist?list=PLxxxxxxxxxxxxxxxx>" -n 5 -o ./videos
-
+```
 3.  Download a single video:\
+```bash
     python main.py "<https://www.youtube.com/watch?v=abc123>" -o ./videos
-
+```
 4.  Force 1080p H.264 (smooth playback on any device):\
+```bash
     python main.py "URL" -q "bestvideo[height<=1080][vcodec^=avc1]+bestaudio[acodec^=mp4a]/best[height<=1080][vcodec^=avc1]" -o ./videos
+```
 
 5.  Force 720p H.264 (lightweight, fast download):\
+```bash
     python main.py "URL" -q "bestvideo[height<=720][vcodec^=avc1]+bestaudio[acodec^=mp4a]/best[height<=720][vcodec^=avc1]" -o ./videos
+```
 
 6.  Use verbose mode to debug:\
+```bash
     python main.py "URL" -v
+```
 
 ## HOW IT WORKS
 
