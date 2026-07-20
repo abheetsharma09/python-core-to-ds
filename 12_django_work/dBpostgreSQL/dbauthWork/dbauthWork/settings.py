@@ -138,6 +138,8 @@ STATICFILES_DIRS = [
     "/var/www/static/",
 ]
 
+SITE_ID = 1
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -147,6 +149,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # Default Django login
     'allauth.account.auth_backends.AuthenticationBackend', # Social login engine
 ]
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Where to send the user after a successful Google login
 LOGIN_REDIRECT_URL = 'dashboard/' 
