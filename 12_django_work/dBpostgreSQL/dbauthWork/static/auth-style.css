@@ -1,0 +1,326 @@
+/* ==========================================================================
+   CUBIX MASTER AUTHENTICATION DESIGN SYSTEM
+   ========================================================================== */
+
+/* Color Palette System System Shared Ecosystem Variables */
+:root {
+    --bg-card: #f8f9fa;
+    --text-dark: #2b2d42;
+    --text-muted: #8d99ae;
+    --border-color: #dcdcdc;
+    
+    /* Core Layout Shape Swatches */
+    --navy: #0f4c5c;
+    --light-blue: #98ded9;
+    --beige: #eae2b7;
+    --pink: #ffb5a7;
+    --coral: #fb8b24;
+    --dark-green: #134021;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Force document canvas to 100% viewport dimensions with no clipping margins */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+   .auth-form-column {
+    display: flex;
+    justify-content: center;
+    
+    /* 1. REMOVE 'align-items: center' to stop the layout from being pulled up */
+    align-items: flex-start; 
+    
+    /* 2. ADD standard protective padding to force breathing room at the top */
+    padding: 60px 60px 40px 60px; 
+    height: 100%;
+    overflow-y: auto; 
+    overflow-x: hidden;
+    
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    
+    /* 3. ADD a dedicated margin buffer to push everything down down */
+    margin-top: 20px; 
+    padding-bottom: 40px; 
+}
+
+
+/* Master Fullscreen Canvas Wrapper */
+.auth-card-fullscreen {
+    background-color: var(--bg-card);
+    width: 100%;
+    height: 100%;
+}
+
+/* Master Grid Structure splitting Form View from Geometric Art */
+.auth-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Keeps the right-side artwork perfectly locked in place */
+}
+
+
+
+/* Form Typography Formatting */
+.brand-logo {
+    display: block;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.brand-logo a {
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.auth-title {
+    font-size: 2.8rem;
+    color: var(--text-dark);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    line-height: 1.1;
+}
+
+.auth-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+/* Input Row Elements Configuration styling */
+.main-auth-form {
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px; /* Compacted to prevent window breakout issues */
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dark);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px; /* Compacted slightly from 14px */
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: transparent;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--text-dark);
+}
+
+.input-group input::placeholder {
+    color: #c0c4cc;
+}
+
+/* Inline Options Layout (Mainly for Login view utility links) */
+.form-utilities {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.forgot-link, .switch-auth-msg a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.forgot-link:hover, .switch-auth-msg a:hover {
+    border-color: var(--text-dark);
+}
+
+/* Action Submit CTA Button */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--text-dark);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 5px; /* Sits closely above the divider */
+}
+
+.btn-submit:hover {
+    background-color: #1d1e2c;
+}
+
+.switch-auth-msg {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SOCIAL OAUTH BUTTONS & DIVIDER STYLES
+   ========================================================================== */
+
+/* The "or" text divider configuration line */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.auth-divider:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.auth-divider:not(:empty)::after {
+    margin-left: .5em;
+}
+
+/* Standalone Google anchor action link button */
+.btn-google {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff;
+    color: var(--text-dark);
+    border: 1.5px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 12px; /* Leaves room between the SVG vector icon and the text label */
+}
+
+.btn-google:hover {
+    background-color: #f1f3f5;
+    border-color: var(--text-dark);
+}
+
+.google-icon {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   RIGHT GRAPHICAL GEOMETRIC MOSAIC FRAMING
+   ========================================================================== */
+.auth-graphics-column {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--bg-card);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mosaic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, min(140px, 10vw)); 
+    grid-template-rows: repeat(3, min(140px, 10vw));
+    gap: 0;
+    position: relative;
+}
+
+.shape {
+    width: 100%;
+    height: 100%;
+}
+
+.navy { background-color: var(--navy); }
+.light-blue { background-color: var(--light-blue); }
+.beige { background-color: var(--beige); }
+.pink { background-color: var(--pink); }
+.coral { background-color: var(--coral); }
+.dark-green { background-color: var(--dark-green); }
+
+.circle { border-radius: 50%; }
+.quarter-top-left { border-top-left-radius: 100%; }
+.quarter-top-right { border-top-right-radius: 100%; }
+.quarter-bottom-left { border-bottom-left-radius: 100%; }
+.quarter-bottom-right { border-bottom-right-radius: 100%; }
+
+.semi-circle-left {
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    width: 200%;
+    height: 100%;
+    background-color: #e76f51;
+    border-bottom-left-radius: 200px;
+    border-top-left-radius: 200px;
+    position: absolute;
+    top: 100%;
+    left: 35%;
+    transform: translateY(-100%);
+    z-index: 2;
+}
+
+/* ==========================================================================
+   TABLET & MOBILE VISUAL COLLAPSE OVERRIDES
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+    /* Drops the art column entirely on narrower monitor layouts to preserve workspace */
+    .auth-graphics-column {
+        display: none;
+    }
+    .auth-form-column {
+        padding: 30px;
+    }
+}

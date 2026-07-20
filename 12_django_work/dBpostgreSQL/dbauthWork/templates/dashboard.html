@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubix - 100% Fullscreen Sticky Wall Workspace</title>
+    <link rel="stylesheet" href="../static/workspace-style.css">
+</head>
+<body>
+    <div class="workspace-fullscreen-edge">
+        
+        <!-- Left Sidebar Navigation Layout -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="menu-header">
+                    <span class="menu-title">Menu</span>
+                    <button class="btn-hamburger">&#9776;</button>
+                </div>
+                
+                <!-- Workspace Search Input -->
+                <div class="search-box">
+                    <span class="search-icon">&#9094;</span>
+                    <input type="text" placeholder="Search">
+                </div>
+
+                <!-- Navigation Tasks Category Group -->
+                <div class="nav-group">
+                    <span class="group-title">TASKS</span>
+                    <a href="#" class="nav-item">
+                        <span class="item-label">&raquo; Upcoming</span>
+                        <span class="item-count">12</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="item-label">&#9783; Today</span>
+                        <span class="item-count">5</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="item-label">&#128197; Calendar</span>
+                    </a>
+                    <a href="#" class="nav-item active">
+                        <span class="item-label">&#9638; Sticky Wall</span>
+                    </a>
+                </div>
+
+                <!-- Custom Lists Group -->
+                <div class="nav-group">
+                    <span class="group-title">LISTS</span>
+                    <a href="#" class="nav-item">
+                        <span class="item-label"><span class="color-badge personal"></span> Personal</span>
+                        <span class="item-count">3</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="item-label"><span class="color-badge work"></span> Work</span>
+                        <span class="item-count">3</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="item-label"><span class="color-badge list1"></span> List 1</span>
+                        <span class="item-count">3</span>
+                    </a>
+                    <button class="btn-add-action">+ Add New List</button>
+                </div>
+
+                <!-- Tags Category Section -->
+                <div class="nav-group">
+                    <span class="group-title">TAGS</span>
+                    <div class="tags-container">
+                        <span class="tag tag-blue">Tag 1</span>
+                        <span class="tag tag-red">Tag 2</span>
+                        <button class="btn-tag-add">+ Add Tag</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Bottom Utilities Tier -->
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item footer-link">&#9881; Settings</a>
+                <a href="{% url 'logout' %}" class="nav-item footer-link">&#10142; Sign out</a>
+            </div>
+        </aside>
+
+        <!-- Main Fluid Content Dashboard Workspace Canvas -->
+        <main class="main-workspace">
+            <header class="workspace-header">
+                <h1 class="workspace-title">Sticky Wall</h1>
+            </header>
+
+            <!-- Sticky Note Component Grid Layout -->
+            <section class="notes-grid">
+                
+                <!-- Social Media Note -->
+                <div class="note-card note-yellow">
+                    <h2 class="note-title">Social Media</h2>
+                    <ul class="note-list">
+                        <li>- Plan social content</li>
+                        <li>- Build content calendar</li>
+                        <li>- Plan promotion and distribution</li>
+                    </ul>
+                </div>
+
+                <!-- Content Strategy Note -->
+                <div class="note-card note-blue">
+                    <h2 class="note-title">Content Strategy</h2>
+                    <p class="note-paragraph">
+                        Would need time to get insights (goals, personals, budget, audits), but after, it would be good to focus on assembling my team (start with SEO specialist, then perhaps an email marketer?). Also need to brainstorm on tooling.
+                    </p>
+                </div>
+
+                <!-- Email A/B Tests Note -->
+                <div class="note-card note-pink">
+                    <h2 class="note-title">Email A/B Tests</h2>
+                    <ul class="note-list">
+                        <li>- Subject lines</li>
+                        <li>- Sender</li>
+                        <li>- CTA</li>
+                        <li>- Sending times</li>
+                    </ul>
+                </div>
+
+                <!-- Banner Ads Note -->
+                <div class="note-card note-orange">
+                    <h2 class="note-title">Banner Ads</h2>
+                    <ul class="note-list">
+                        <li>- Notes from the workshop:</li>
+                        <li>- Sizing matters</li>
+                        <li>- Choose distinctive imagery</li>
+                        <li>- The landing page must match the display ad</li>
+                    </ul>
+                </div>
+
+                <!-- Interactive Placeholder Add Empty Note Action Target Card -->
+                <div class="note-card add-note-placeholder">
+                    <span class="plus-icon">+</span>
+                </div>
+
+            </section>
+        </main>
+
+    </div>
+</body>
+</html>

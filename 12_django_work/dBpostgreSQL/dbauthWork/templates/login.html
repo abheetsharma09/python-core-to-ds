@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubix - Log In</title>
+    <link rel="stylesheet" href="../static/auth-style.css">
+</head>
+<body>
+    <div class="auth-card-fullscreen">
+        <!-- Main Layout Splitter -->
+        <main class="auth-container">
+            
+            <!-- Left Side: Form Container -->
+            <div class="auth-form-column">
+                <div class="form-wrapper">
+                    <!-- App Branding and Context Header -->
+                    <span class="brand-logo"><a href="/">CUBIX</a></span>
+                    <h1 class="auth-title">Welcome back.</h1>
+                    <p class="auth-subtitle">Log in to your account to continue managing your tasks.</p>
+
+                    <!-- Form Inputs (Ready for Django {% csrf_token %}) -->
+                    <form method="POST" class="main-auth-form">
+                        <!-- Input fields are wrapped for pristine alignment -->
+                        <div class="input-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+
+                        <!-- Utility link tier -->
+                        <div class="form-utilities">
+                            <a href="#" class="forgot-link">Forgot password?</a>
+                        </div>
+
+                        <!-- Call to Action Trigger -->
+                        <button type="submit" class="btn-submit">LOG IN</button>
+                    </form>
+
+                    <!-- Cross-navigation pathway link -->
+                    <p class="switch-auth-msg">New to Cubix? <a href="/signin/">Create an account</a></p>
+                </div>
+            </div>
+
+            <!-- Right Side: Geometric Mosaic Aesthetic Accent (Perfect mirror of Landing Page) -->
+            <div class="auth-graphics-column">
+                <div class="mosaic-grid">
+                    <div class="shape quarter-top-left navy"></div>
+                    <div class="shape quarter-top-right light-blue"></div>
+                    <div class="shape circle beige"></div>
+                    <div class="shape quarter-bottom-left pink"></div>
+                    <div class="shape circle beige"></div>
+                    <div class="shape semi-circle-left coral"></div>
+                    <div class="shape quarter-top-left light-blue"></div>
+                    <div class="shape quarter-bottom-right dark-green"></div>
+                    <div class="shape quarter-top-right pink"></div>
+                    <div class="shape empty"></div> 
+                    <div class="shape circle navy"></div>
+                    <div class="shape quarter-top-left beige"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>

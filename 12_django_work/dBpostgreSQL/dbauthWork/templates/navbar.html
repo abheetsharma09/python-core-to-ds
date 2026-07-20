@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toDo - Organize your day</title>
+    <link rel="stylesheet" href="../static/style-navbar.css">
+</head>
+<body>
+    <nav class="nexus-nav">
+        <div class="nav-inner">
+            <!-- Brand -->
+            <a href="/" class="nav-brand">
+                <i class="fa-solid fa-cube logo-icon"></i>
+                <span>toDo</span>
+            </a>
+
+            <!-- Search bar -->
+            <div class="search-box">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search tasks..." />
+            </div>
+
+            <!-- Right side: auth buttons + dark toggle -->
+            <div class="nav-actions">
+                {% if user.is_authenticated %}
+                    <a href="/logout" class="nav-btn logout-btn">Log Out</a>
+                {% else %}
+                    <a href="/signin" class="nav-btn signin-btn">Sign In</a>
+                    <a href="/login" class="nav-btn signin-btn">Log In</a>
+                {% endif %}
+                
+                <!-- Dark mode toggle (optional)
+                <button class="theme-toggle" onclick="document.body.classList.toggle('dark-theme')">
+                    <i class="fa-regular fa-moon"></i>
+                </button> -->
+            </div>
+        </div>
+    </nav>
+    {% block homeContent %}{% endblock homeContent %}
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubix - 100% Fullscreen To-Do Workspace</title>
+    <link rel="stylesheet" href="../static/landing-style.css">
+</head>
+<body>
+    <div class="landing-card-fullscreen">
+        <!-- Top Navigation Bar Layout spanning edge-to-edge -->
+        <header class="navbar">
+            <div class="nav-left">
+                <span class="logo">CUBIX</span>
+                <nav class="nav-links">
+
+                    <a href="#">ABOUT US</a>
+                    <a href="#">CONTACT US</a>
+                </nav>
+            </div>
+            <!-- Auth Triggers Group -->
+                <div class="auth-buttons"> 
+                    {% if user.is_authenticated %} 
+                        <!-- Logout Button -->
+                        <a class="btn-auth log-out" href="{% url 'logout' %}">Logout</a> 
+                    {% else %} 
+                        <!-- Sign In Button -->
+                        <a class="btn-auth sign-in" href="{% url 'signin' %}">Sign In</a> 
+                        <!-- Log In Button (Make sure to replace 'login' with your actual Django URL path name) -->
+                        <a class="btn-auth log-in" href="{% url 'login' %}">Log In</a> 
+                    {% endif %} 
+                </div>                
+        </header>
+
+        <!-- Main Hero Section - Absolute Full Screen Split -->
+        <main class="hero-container">
+            <!-- Left Content Column -->
+            <div class="hero-text">
+                <h1 class="main-title">Get your<br>work done.<br>Together.</h1>
+                <p class="subtitle">Organize tasks, track projects, and build productive daily routines with our simple, geometric task manager.</p>
+                <button class="btn-start">START FREE</button>
+            </div>
+
+            <!-- Right Vector Graphic Container (Scales Fluidly to edge) -->
+            <div class="hero-graphics">
+                <div class="mosaic-grid">
+                    <!-- Row 1 Component Blocks -->
+                    <div class="shape quarter-top-left navy"></div>
+                    <div class="shape quarter-top-right light-blue"></div>
+                    <div class="shape circle beige"></div>
+                    <div class="shape quarter-bottom-left pink"></div>
+
+                    <!-- Row 2 Component Blocks -->
+                    <div class="shape circle beige"></div>
+                    <div class="shape semi-circle-left coral"></div>
+                    <div class="shape quarter-top-left light-blue"></div>
+                    <div class="shape quarter-bottom-right dark-green"></div>
+
+                    <!-- Row 3 Component Blocks -->
+                    <div class="shape quarter-top-right pink"></div>
+                    <div class="shape empty"></div> 
+                    <div class="shape circle navy"></div>
+                    <div class="shape quarter-top-left beige"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
