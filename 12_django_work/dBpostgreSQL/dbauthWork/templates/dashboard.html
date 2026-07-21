@@ -3,138 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cubix - 100% Fullscreen Sticky Wall Workspace</title>
-    <link rel="stylesheet" href="../static/workspace-style.css">
+    <title>Sticky Notes</title>
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <script src="../static/dashboard.js"></script>
 </head>
 <body>
-    <div class="workspace-fullscreen-edge">
-        
-        <!-- Left Sidebar Navigation Layout -->
-        <aside class="sidebar">
-            <div class="sidebar-top">
+
+    <div class="app">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-inner">
                 <div class="menu-header">
-                    <span class="menu-title">Menu</span>
-                    <button class="btn-hamburger">&#9776;</button>
+                    <h2>Menu</h2>
+                    <button class="dark-toggle" id="darkToggle">
+                        <span class="toggle-icon">🌙</span>
+                    </button>
                 </div>
-                
-                <!-- Workspace Search Input -->
-                <div class="search-box">
-                    <span class="search-icon">&#9094;</span>
-                    <input type="text" placeholder="Search">
+                <div class="nav-section">
+                    <nav class="nav-list">
+                        <a href="#" class="nav-item active">Home</a>
+                        <a href="#" class="nav-item">Settings</a>
+                        <a href="#" class="nav-item">Logout</a>
+                    </nav>
                 </div>
-
-                <!-- Navigation Tasks Category Group -->
-                <div class="nav-group">
-                    <span class="group-title">TASKS</span>
-                    <a href="#" class="nav-item">
-                        <span class="item-label">&raquo; Upcoming</span>
-                        <span class="item-count">12</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="item-label">&#9783; Today</span>
-                        <span class="item-count">5</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="item-label">&#128197; Calendar</span>
-                    </a>
-                    <a href="#" class="nav-item active">
-                        <span class="item-label">&#9638; Sticky Wall</span>
-                    </a>
-                </div>
-
-                <!-- Custom Lists Group -->
-                <div class="nav-group">
-                    <span class="group-title">LISTS</span>
-                    <a href="#" class="nav-item">
-                        <span class="item-label"><span class="color-badge personal"></span> Personal</span>
-                        <span class="item-count">3</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="item-label"><span class="color-badge work"></span> Work</span>
-                        <span class="item-count">3</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <span class="item-label"><span class="color-badge list1"></span> List 1</span>
-                        <span class="item-count">3</span>
-                    </a>
-                    <button class="btn-add-action">+ Add New List</button>
-                </div>
-
-                <!-- Tags Category Section -->
-                <div class="nav-group">
-                    <span class="group-title">TAGS</span>
-                    <div class="tags-container">
-                        <span class="tag tag-blue">Tag 1</span>
-                        <span class="tag tag-red">Tag 2</span>
-                        <button class="btn-tag-add">+ Add Tag</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sidebar Bottom Utilities Tier -->
-            <div class="sidebar-bottom">
-                <a href="#" class="nav-item footer-link">&#9881; Settings</a>
-                <a href="{% url 'logout' %}" class="nav-item footer-link">&#10142; Sign out</a>
             </div>
         </aside>
 
-        <!-- Main Fluid Content Dashboard Workspace Canvas -->
-        <main class="main-workspace">
-            <header class="workspace-header">
-                <h1 class="workspace-title">Sticky Wall</h1>
-            </header>
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content">
+            <div class="main-header">
+                <h1>📌 Sticky Wall</h1>
+                <button class="add-note-btn" id="addNoteBtn">+ Add Note</button>
+            </div>
 
-            <!-- Sticky Note Component Grid Layout -->
-            <section class="notes-grid">
-                
-                <!-- Social Media Note -->
-                <div class="note-card note-yellow">
-                    <h2 class="note-title">Social Media</h2>
-                    <ul class="note-list">
-                        <li>- Plan social content</li>
-                        <li>- Build content calendar</li>
-                        <li>- Plan promotion and distribution</li>
-                    </ul>
+            <!-- Row of static dummy cards -->
+            <div class="notes-grid">
+                <!-- Card 1 -->
+                <div class="note-card" style="background: #fff9c4;">
+                    <div>
+                        <h3>Welcome</h3>
+                        <p>This is a dummy sticky note. It can hold a lot of text and will expand to fit the content comfortably.</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn-edit" data-id="1">✏️ Edit</button>
+                        <button class="btn-delete" data-id="1">🗑️ Delete</button>
+                    </div>
                 </div>
 
-                <!-- Content Strategy Note -->
-                <div class="note-card note-blue">
-                    <h2 class="note-title">Content Strategy</h2>
-                    <p class="note-paragraph">
-                        Would need time to get insights (goals, personals, budget, audits), but after, it would be good to focus on assembling my team (start with SEO specialist, then perhaps an email marketer?). Also need to brainstorm on tooling.
-                    </p>
+                <!-- Card 2 -->
+                <div class="note-card" style="background: #ffecb3;">
+                    <div>
+                        <h3>Reminder</h3>
+                        <p>Dark mode is ready to toggle. Also, this card will grow if you paste a longer description here.</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn-edit" data-id="2">✏️ Edit</button>
+                        <button class="btn-delete" data-id="2">🗑️ Delete</button>
+                    </div>
                 </div>
 
-                <!-- Email A/B Tests Note -->
-                <div class="note-card note-pink">
-                    <h2 class="note-title">Email A/B Tests</h2>
-                    <ul class="note-list">
-                        <li>- Subject lines</li>
-                        <li>- Sender</li>
-                        <li>- CTA</li>
-                        <li>- Sending times</li>
-                    </ul>
+                <!-- Card 3 -->
+                <div class="note-card" style="background: #ffccbc;">
+                    <div>
+                        <h3>Ideas</h3>
+                        <p>Click "Add Note" to see the popup. Cards are straight and no longer tilted.</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn-edit" data-id="3">✏️ Edit</button>
+                        <button class="btn-delete" data-id="3">🗑️ Delete</button>
+                    </div>
                 </div>
 
-                <!-- Banner Ads Note -->
-                <div class="note-card note-orange">
-                    <h2 class="note-title">Banner Ads</h2>
-                    <ul class="note-list">
-                        <li>- Notes from the workshop:</li>
-                        <li>- Sizing matters</li>
-                        <li>- Choose distinctive imagery</li>
-                        <li>- The landing page must match the display ad</li>
-                    </ul>
+                <!-- Card 4 -->
+                <div class="note-card" style="background: #b3d9ff;">
+                    <div>
+                        <h3>To Do</h3>
+                        <p>Edit any card to open the edit modal. The card width adapts to content.</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn-edit" data-id="4">✏️ Edit</button>
+                        <button class="btn-delete" data-id="4">🗑️ Delete</button>
+                    </div>
                 </div>
 
-                <!-- Interactive Placeholder Add Empty Note Action Target Card -->
-                <div class="note-card add-note-placeholder">
-                    <span class="plus-icon">+</span>
+                <!-- Card 5 -->
+                <div class="note-card" style="background: #d4b3ff;">
+                    <div>
+                        <h3>Notes</h3>
+                        <p>All cards are static – no backend needed. They are now straight and can contain a very long text that will wrap and make the card taller.</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="btn-edit" data-id="5">✏️ Edit</button>
+                        <button class="btn-delete" data-id="5">🗑️ Delete</button>
+                    </div>
                 </div>
-
-            </section>
+            </div>
         </main>
-
     </div>
+
+    <!-- ===== ADD NOTE MODAL (dummy) ===== -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal-card">
+            <button class="modal-close" id="addModalClose">✕</button>
+            <h2>✏️ Add New Note</h2>
+            <form id="addForm">
+                <input type="text" name="title" placeholder="Title" required>
+                <textarea name="description" placeholder="Description" rows="4"></textarea>
+                <button type="submit" class="modal-add-btn">Add Note</button>
+            </form>
+            <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                ⚡ Dummy: no data is saved.
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== EDIT NOTE MODAL (dummy) ===== -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-card">
+            <button class="modal-close" id="editModalClose">✕</button>
+            <h2>✏️ Edit Note</h2>
+            <form id="editForm">
+                <input type="text" name="title" placeholder="Title" value="Dummy Title" required>
+                <textarea name="description" placeholder="Description" rows="4">Dummy description – nothing changes.</textarea>
+                <button type="submit" class="modal-add-btn">Save Changes</button>
+            </form>
+            <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                ⚡ Dummy: changes are not saved.
+            </p>
+        </div>
+    </div>
+
 </body>
 </html>

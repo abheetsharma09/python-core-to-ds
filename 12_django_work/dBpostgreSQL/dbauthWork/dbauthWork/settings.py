@@ -152,7 +152,7 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # Where to send the user after a successful Google login
-LOGIN_REDIRECT_URL = 'dashboard/' 
+LOGIN_REDIRECT_URL = 'dashboard' 
 
 # Where to send them if they log out
 LOGOUT_REDIRECT_URL = 'login/' 

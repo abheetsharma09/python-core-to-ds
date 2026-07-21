@@ -1,0 +1,369 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+:root {
+    --bg-app: #f5f0eb;
+    --bg-sidebar: #ffffff;
+    --bg-main: #f5f0eb;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    --hover-bg: #f1f5f9;
+    --active-bg: #eef2ff;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --modal-bg: rgba(0, 0, 0, 0.4);
+    --card-bg: #ffffff;
+    --note-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --transition: 0.25s ease;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+}
+
+body.dark {
+    --bg-app: #121826;
+    --bg-sidebar: #1e293b;
+    --bg-main: #121826;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    --hover-bg: #334155;
+    --active-bg: #2d3a4f;
+    --modal-bg: rgba(0, 0, 0, 0.7);
+    --card-bg: #1e293b;
+    --note-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+body {
+    background: var(--bg-app);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    background: var(--bg-app);
+    transition: background var(--transition);
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+    width: 260px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-color);
+    padding: 20px 16px;
+    overflow-y: auto;
+    flex-shrink: 0;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.sidebar-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.dark-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    color: var(--text-primary);
+}
+.dark-toggle:hover {
+    background: var(--hover-bg);
+}
+
+.nav-section .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.nav-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    cursor: default;
+}
+.nav-item:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+.nav-item.active {
+    background: var(--active-bg);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* ---- Main Content ---- */
+.main-content {
+    flex: 1;
+    background: var(--bg-main);
+    padding: 24px 32px;
+    overflow-y: auto;
+    transition: background var(--transition);
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+.main-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.add-note-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+}
+.add-note-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.02);
+}
+
+/* ---- Notes Grid (flex row) ---- */
+.notes-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 4px 0;
+    align-items: flex-start;
+}
+
+/* ---- Individual Note Card (straight, flexible) ---- */
+.note-card {
+    flex: 0 1 240px;          /* flexible width, min 240px, can grow */
+    min-height: 160px;
+    padding: 18px 18px 18px;
+    border-radius: 8px 8px 8px 0;
+    box-shadow: var(--note-shadow);
+    border-bottom: 4px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.2s, transform 0.2s;
+    /* no rotation */
+}
+.note-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+body.dark .note-card {
+    background: #2d2a1e !important;
+    border-bottom-color: #4a4530;
+}
+
+.note-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 6px;
+    word-break: break-word;
+}
+body.dark .note-card h3 {
+    color: #f1f5f9;
+}
+
+.note-card p {
+    font-size: 0.9rem;
+    color: #334155;
+    line-height: 1.5;
+    flex-grow: 1;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+body.dark .note-card p {
+    color: #cbd5e1;
+}
+
+.note-card .note-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.note-card .note-actions button {
+    border: none;
+    padding: 5px 16px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-edit {
+    background: var(--accent);
+    color: white;
+}
+.btn-edit:hover {
+    background: var(--accent-hover);
+}
+
+.btn-delete {
+    background: var(--danger);
+    color: white;
+}
+.btn-delete:hover {
+    background: var(--danger-hover);
+}
+
+/* ---- Modals (shared) ---- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--modal-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 32px 28px 28px;
+    max-width: 420px;
+    width: 92%;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s ease, background var(--transition);
+}
+.modal-overlay.active .modal-card {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-card h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.modal-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.modal-card input,
+.modal-card textarea {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: border-color 0.2s, background var(--transition);
+    outline: none;
+}
+.modal-card input:focus,
+.modal-card textarea:focus {
+    border-color: var(--accent);
+}
+.modal-card textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-add-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.modal-add-btn:hover {
+    background: var(--accent-hover);
+    transform: scale(1.01);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+    .app {
+        flex-direction: column;
+        height: auto;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 12px 16px;
+        max-height: 180px;
+        overflow-y: auto;
+    }
+    .main-content {
+        padding: 16px;
+    }
+    .note-card {
+        flex: 0 1 100%;
+        min-height: 120px;
+    }
+}
