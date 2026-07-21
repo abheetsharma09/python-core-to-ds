@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate ,login
 from django.contrib.auth import logout
 from django.db import IntegrityError
 from django.contrib import messages
+from appHome.models import todoData
 
 # Create your views here.
 def home(requests):
@@ -18,10 +19,26 @@ def logout_user(requests):
     return redirect('login')
 
 def dashboard(requests):
-    if requests.user.is_authenticated:
-        return render(requests , 'dashboard.html')
-    else:
-        return redirect('')
+    if not requests.user.is_authenticated:
+        return redirect('login') # Replace with your login URL pattern name
+
+    if requests.method == "POST":   
+        user_title = requests.POST.get("add_title")
+        user_desc = requests.POST.get("add_desc")
+
+        # Save to PostgreSQL
+        todoData.objects.create(
+            user=requests.user, 
+            title=user_title,
+            description=user_desc
+        ) 
+        
+        # REDIRECT prevents duplicate data if the user hits refresh!
+        return redirect('dashboard')
+
+    # Fetch notes dynamically for the logged-in user
+    user_notes = todoData.objects.filter(user=requests.user)
+    return render(requests, 'dashboard.html', {'notes': user_notes})
 
 def signin(requests):
     if requests.user.is_authenticated:

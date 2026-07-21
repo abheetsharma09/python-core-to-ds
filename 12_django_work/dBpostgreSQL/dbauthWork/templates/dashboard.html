@@ -1,11 +1,12 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sticky Notes</title>
-    <link rel="stylesheet" href="../static/dashboard.css">
-    <script src="../static/dashboard.js"></script>
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <script src="{% static 'dashboard.js' %}"></script>
 </head>
 <body>
 
@@ -24,7 +25,7 @@
                     <nav class="nav-list">
                         <a href="#" class="nav-item active">Home</a>
                         <a href="#" class="nav-item">Settings</a>
-                        <a href="#" class="nav-item">Logout</a>
+                        <a href="{% url 'logout' %}" class="nav-item">Logout</a>
                     </nav>
                 </div>
             </div>
@@ -37,68 +38,24 @@
                 <button class="add-note-btn" id="addNoteBtn">+ Add Note</button>
             </div>
 
-            <!-- Row of static dummy cards -->
             <div class="notes-grid">
-                <!-- Card 1 -->
-                <div class="note-card" style="background: #fff9c4;">
-                    <div>
-                        <h3>Welcome</h3>
-                        <p>This is a dummy sticky note. It can hold a lot of text and will expand to fit the content comfortably.</p>
+                {% for note in notes %}
+                    <div class="note-card" style="background: #fff9c4;">
+                        <div>
+                            <h3>{{ note.title }}</h3>
+                            <p>{{ note.description }}</p>
+                        </div>
+                        <div class="note-actions">
+                            <button class="btn-edit" data-id="{{ note.id }}">✏️ Edit</button>
+                            <button class="btn-delete" data-id="{{ note.id }}">🗑️ Delete</button>
+                        </div>
                     </div>
-                    <div class="note-actions">
-                        <button class="btn-edit" data-id="1">✏️ Edit</button>
-                        <button class="btn-delete" data-id="1">🗑️ Delete</button>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="note-card" style="background: #ffecb3;">
-                    <div>
-                        <h3>Reminder</h3>
-                        <p>Dark mode is ready to toggle. Also, this card will grow if you paste a longer description here.</p>
-                    </div>
-                    <div class="note-actions">
-                        <button class="btn-edit" data-id="2">✏️ Edit</button>
-                        <button class="btn-delete" data-id="2">🗑️ Delete</button>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="note-card" style="background: #ffccbc;">
-                    <div>
-                        <h3>Ideas</h3>
-                        <p>Click "Add Note" to see the popup. Cards are straight and no longer tilted.</p>
-                    </div>
-                    <div class="note-actions">
-                        <button class="btn-edit" data-id="3">✏️ Edit</button>
-                        <button class="btn-delete" data-id="3">🗑️ Delete</button>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="note-card" style="background: #b3d9ff;">
-                    <div>
-                        <h3>To Do</h3>
-                        <p>Edit any card to open the edit modal. The card width adapts to content.</p>
-                    </div>
-                    <div class="note-actions">
-                        <button class="btn-edit" data-id="4">✏️ Edit</button>
-                        <button class="btn-delete" data-id="4">🗑️ Delete</button>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="note-card" style="background: #d4b3ff;">
-                    <div>
-                        <h3>Notes</h3>
-                        <p>All cards are static – no backend needed. They are now straight and can contain a very long text that will wrap and make the card taller.</p>
-                    </div>
-                    <div class="note-actions">
-                        <button class="btn-edit" data-id="5">✏️ Edit</button>
-                        <button class="btn-delete" data-id="5">🗑️ Delete</button>
-                    </div>
-                </div>
+                {% empty %}
+                    <!-- Displays if the database query returns no notes -->
+                    <p>No sticky notes found. Click "+ Add Note" to create one!</p>
+                {% endfor %}
             </div>
+            
         </main>
     </div>
 
@@ -107,13 +64,14 @@
         <div class="modal-card">
             <button class="modal-close" id="addModalClose">✕</button>
             <h2>✏️ Add New Note</h2>
-            <form id="addForm">
-                <input type="text" name="title" placeholder="Title" required>
-                <textarea name="description" placeholder="Description" rows="4"></textarea>
+            <form  method="POST" action="{% url 'dashboard' %}" id="addForm">
+                {% csrf_token %}
+                <input type="text" name="add_title" placeholder="Title" required>
+                <textarea name="add_desc" placeholder="Description" rows="4"></textarea>
                 <button type="submit" class="modal-add-btn">Add Note</button>
             </form>
             <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                ⚡ Dummy: no data is saved.
+                ⚡ Dummy: Data is saved.
             </p>
         </div>
     </div>
@@ -124,8 +82,8 @@
             <button class="modal-close" id="editModalClose">✕</button>
             <h2>✏️ Edit Note</h2>
             <form id="editForm">
-                <input type="text" name="title" placeholder="Title" value="Dummy Title" required>
-                <textarea name="description" placeholder="Description" rows="4">Dummy description – nothing changes.</textarea>
+                <input type="text" name="edit_title" placeholder="Title" value="Dummy Title" required>
+                <textarea name="edit_desc" placeholder="Description" rows="4">Dummy description – nothing changes.</textarea>
                 <button type="submit" class="modal-add-btn">Save Changes</button>
             </form>
             <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); text-align: center;">

@@ -43,15 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ---- Prevent form submissions (dummy) ----
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const modal = form.closest('.modal-overlay');
-            if (modal) modal.classList.remove('active');
-        });
-    });
-
     // ---- Delete buttons show a dummy alert ----
     document.addEventListener('click', (e) => {
         if (e.target.closest('.btn-delete')) {
