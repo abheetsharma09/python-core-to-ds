@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate ,login
@@ -27,18 +27,38 @@ def dashboard(requests):
         user_desc = requests.POST.get("add_desc")
 
         # Save to PostgreSQL
-        todoData.objects.create(
-            user=requests.user, 
-            title=user_title,
-            description=user_desc
-        ) 
+        if user_title and user_title.strip():
+            todoData.objects.create(
+                user=requests.user, 
+                title=user_title,
+                description=user_desc
+            ) 
+    
         
         # REDIRECT prevents duplicate data if the user hits refresh!
         return redirect('dashboard')
 
     # Fetch notes dynamically for the logged-in user
     user_notes = todoData.objects.filter(user=requests.user)
-    return render(requests, 'dashboard.html', {'notes': user_notes})
+    contextUser_data = {
+        'currDate' : datetime.today(),
+        'notes': user_notes
+    }
+    return render(requests, 'dashboard.html', contextUser_data)
+
+def edit_note(requests, note_id):
+    if requests.user.is_authenticated:
+        if requests.method == "POST":
+            note = get_object_or_404(todoData, id=note_id, user=requests.user)
+            
+            note.title = requests.POST.get("edit_title")
+            note.description = requests.POST.get("edit_desc")
+            
+            note.save() # Saves modifications back to PostgreSQL
+            
+        return redirect('dashboard')
+    else:
+        return redirect('login')
 
 def signin(requests):
     if requests.user.is_authenticated:
@@ -70,24 +90,24 @@ def signin(requests):
 def login_views(requests):
     if requests.user.is_authenticated:
         return redirect("dashboard")
+    else:
+        if requests.method == "POST":
+            u_username = requests.POST.get("username")
+            u_password =requests.POST.get("password")
+
+            user = authenticate(username=u_username, password=u_password)
+
+            if user is not None:
+            # A backend authenticated the credentials
+                login(
+                    requests, 
+                    user,
+                    backend='django.contrib.auth.backends.ModelBackend'
+                    ) 
+                return redirect('dashboard')
+            else:
+            # No backend authenticated the credentials
+                return redirect('home')
+
     
-    if requests.method == "POST":
-        u_username = requests.POST.get("username")
-        u_password =requests.POST.get("password")
-
-        user = authenticate(username=u_username, password=u_password)
-
-        if user is not None:
-        # A backend authenticated the credentials
-            login(
-                requests, 
-                user,
-                backend='django.contrib.auth.backends.ModelBackend'
-                ) 
-            return redirect('dashboard')
-        else:
-        # No backend authenticated the credentials
-            return redirect('home')
-
-    
-    return render(requests ,'login.html')
+        return render(requests ,'login.html')

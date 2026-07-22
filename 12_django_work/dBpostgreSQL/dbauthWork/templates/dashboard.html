@@ -26,6 +26,7 @@
                         <a href="#" class="nav-item active">Home</a>
                         <a href="#" class="nav-item">Settings</a>
                         <a href="{% url 'logout' %}" class="nav-item">Logout</a>
+                        <a class="nav-item" style="font-weight:bold;">{{ currDate }}</a>
                     </nav>
                 </div>
             </div>
@@ -81,7 +82,8 @@
         <div class="modal-card">
             <button class="modal-close" id="editModalClose">✕</button>
             <h2>✏️ Edit Note</h2>
-            <form id="editForm">
+            <form id="editForm" method="POST">
+                {% csrf_token %}
                 <input type="text" name="edit_title" placeholder="Title" value="Dummy Title" required>
                 <textarea name="edit_desc" placeholder="Description" rows="4">Dummy description – nothing changes.</textarea>
                 <button type="submit" class="modal-add-btn">Save Changes</button>
