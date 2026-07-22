@@ -48,7 +48,7 @@
                         </div>
                         <div class="note-actions">
                             <button class="btn-edit" data-id="{{ note.id }}">✏️ Edit</button>
-                            <button class="btn-delete" data-id="{{ note.id }}">🗑️ Delete</button>
+                            <a class="btn-delete" data-id="{{ note.id }}" href="/delete/{{ note.id }}" >🗑️ Delete</a>
                         </div>
                     </div>
                 {% empty %}

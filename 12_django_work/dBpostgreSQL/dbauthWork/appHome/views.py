@@ -41,6 +41,7 @@ def dashboard(requests):
     # Fetch notes dynamically for the logged-in user
     user_notes = todoData.objects.filter(user=requests.user)
     contextUser_data = {
+        'userName' : requests.user,
         'currDate' : datetime.today(),
         'notes': user_notes
     }
@@ -56,6 +57,14 @@ def edit_note(requests, note_id):
             
             note.save() # Saves modifications back to PostgreSQL
             
+        return redirect('dashboard')
+    else:
+        return redirect('login')
+
+def delete_note(requests, note_id):
+    if requests.user.is_authenticated:
+        note = get_object_or_404(todoData, id=note_id, user=requests.user)
+        note.delete() # Deletes the row from PostgreSQL
         return redirect('dashboard')
     else:
         return redirect('login')
